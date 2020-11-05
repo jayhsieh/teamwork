@@ -4,20 +4,14 @@
     <meta charset="UTF-8">
     <title>Dwarf Home</title>
 </head>
-<body>
-    <h1> Quant Team FinTech Lab </h1>
-    <!-- <p><strong>Still in development. Please inform us if you have any concerns. Phone Extension is 9103.</strong></p>
-    <ul>
-        <li>DCI, SI, or any programming issues, please contact 芃勛 (7244)</li>
-        <li>Financial engineering pricing models for FXD, IRD products, please contact 駿杰 (7222)</li>
-    </ul> -->
+<body style="font-family: sans-serif">
+    <h1> Dwarf Home </h1>
     <br>
-    <br>
-    <!--20200711 add by Danny-->
-    <!-- <h4><strong>Equity</strong></h4>
-    <h4><strong>Pricer</strong></h4>
     <ul>
-        <li><a href="{% url 'dwarf_home' %}"> Fixed Rate Callable</a></li>
+        <li><a href="{% url 'start_zookeeper' %}"> Start Zookeeper</a></li>
+        <li><a href="{% url 'start_kafka' %}"> Start Kafka</a></li>
+        <li><a href="{% url 'stop_kafka' %}"> Stop Kafka</a></li>
     </ul>
+    <p>{{ response }}</p>
     <br>
 </body>
