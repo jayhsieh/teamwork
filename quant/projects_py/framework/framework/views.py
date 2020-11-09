@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from subprocess import Popen, PIPE
 
+
 # Create your views here.
 def dwarf_home(request):
     return render(request, 'index.html')
-    #return HttpResponse("dwarf_home")
+    # return HttpResponse("dwarf_home")
 
 
 def start_zookeeper(request):
@@ -15,7 +16,7 @@ def start_zookeeper(request):
     p1 = Popen(cmd2, shell=True, bufsize=1)
 
     cmd3 = 'lsof -i :2181 | wc -l'
-    #cmd3 = 'ls -l'
+    # cmd3 = 'ls -l'
     q = Popen(cmd3, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
 
     if int(str(q.stdout.read)) > 0:
@@ -35,7 +36,7 @@ def start_kafka(request):
     cmd3 = 'lsof -i :9092 | wc -l'
     q = Popen(cmd3, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
 
-    if int(str(q.stdout.read)) > 0:
+    if (str(q.stdout.read)) > 0:
         response = 'kafka is on.'
     else:
         response = "kafka is still sleeping."

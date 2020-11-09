@@ -5,13 +5,14 @@
     <title>Dwarf Home</title>
 </head>
 <body style="font-family: sans-serif">
-    <h1> Dwarf Home </h1>
-    <br>
-    <ul>
-        <li><a href="{% url 'start_zookeeper' %}"> Start Zookeeper</a></li>
-        <li><a href="{% url 'start_kafka' %}"> Start Kafka</a></li>
-        <li><a href="{% url 'stop_kafka' %}"> Stop Kafka</a></li>
-    </ul>
-    <p>{{ response }}</p>
-    <br>
+<h1> Dwarf Home </h1>
+<br>
+<ul>
+    <li><a href="{% url 'start_zookeeper' %}"> Start Zookeeper</a></li>
+    <li><a href="{% url 'start_kafka' %}"> Start Kafka</a></li>
+    <li><a href="{% url 'stop_kafka' %}"> Stop Kafka</a></li>
+</ul>
+<br>
+<p>{{ response }}</p>
+<br>
 </body>
