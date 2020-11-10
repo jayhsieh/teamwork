@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -x
+set -e
+set -u
+
+docker run -it --privileged --rm --pid=host alpine:latest nsenter -t 1 -m -u -n -i /bin/bash
+cd /home/ken/djangoProj/service/framework/
+/home/jay/miniconda3/envs/py37/bin/python3 manage.py runserver 0.0.0.0:9001

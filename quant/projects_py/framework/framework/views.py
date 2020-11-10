@@ -9,17 +9,14 @@ def dwarf_home(request):
 
 
 def start_zookeeper(request):
-    cmd1 = 'docker run -it --privileged --rm --pid=host alpine:latest nsenter -t 1 -m -u -n -i /bin/bash'
-    p0 = Popen(cmd1, shell=True, bufsize=1)
+    cmd1 = 'bash /home/ken/installed/zookeeper/bin/start_zookeeper.sh'
+    p1 = Popen(cmd1, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
+    response = p1.stdout.read()
 
-    cmd2 = '/home/ken/installed/zookeeper/bin/start_zookeeper.sh'
-    p1 = Popen(cmd2, shell=True, bufsize=1)
+    cmd2 = 'lsof -i :2181 | wc -l'
+    q = Popen(cmd2, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
 
-    cmd3 = 'lsof -i :2181 | wc -l'
-    # cmd3 = 'ls -l'
-    q = Popen(cmd3, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
-
-    if int(str(q.stdout.read)) > 0:
+    if int(q.stdout.read()) > 0:
         response = 'Zoo is open now.'
     else:
         response = 'Zoo is not ready yet.'
@@ -27,16 +24,14 @@ def start_zookeeper(request):
 
 
 def start_kafka(request):
-    cmd1 = 'docker run -it --privileged --rm --pid=host alpine:latest nsenter -t 1 -m -u -n -i /bin/bash'
-    p0 = Popen(cmd1, shell=True, bufsize=1)
+    cmd1 = 'bash /home/ken/installed/kafka/bin/start_kafka.sh'
+    p1 = Popen(cmd1, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
+    response = p1.stdout.read()
 
-    cmd2 = '/home/ken/installed/kafka/bin/start_kafka.sh'
-    p1 = Popen(cmd2, shell=True, bufsize=1)
+    cmd2 = 'lsof -i :9092 | wc -l'
+    q = Popen(cmd2, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
 
-    cmd3 = 'lsof -i :9092 | wc -l'
-    q = Popen(cmd3, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
-
-    if (str(q.stdout.read)) > 0:
+    if int(q.stdout.read()) > 0:
         response = 'kafka is on.'
     else:
         response = "kafka is still sleeping."
@@ -44,16 +39,14 @@ def start_kafka(request):
 
 
 def stop_kafka(request):
-    cmd1 = 'docker run -it --privileged --rm --pid=host alpine:latest nsenter -t 1 -m -u -n -i /bin/bash'
-    p0 = Popen(cmd1, shell=True, bufsize=1)
+    cmd1 = 'bash /home/ken/installed/kafka/bin/stop_kafka.sh'
+    p1 = Popen(cmd1, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
+    response = p1.stdout.read()
 
-    cmd2 = '/home/ken/installed/kafka/bin/stop_kafka.sh'
-    p1 = Popen(cmd2, shell=True, bufsize=1)
+    cmd2 = 'lsof -i :9092 | wc -l'
+    q = Popen(cmd2, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
 
-    cmd3 = 'lsof -i :9092 | wc -l'
-    q = Popen(cmd3, shell=True, stdout=PIPE, bufsize=1, universal_newlines=True)
-
-    if int(str(q.stdout.read)) > 0:
+    if int(q.stdout.read()) > 0:
         response = 'kafka is still on.'
     else:
         response = "kafka is off."
